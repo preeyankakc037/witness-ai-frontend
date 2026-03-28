@@ -34,7 +34,7 @@ export const SplashScreen = () => {
       >
         {/* Logo mark */}
         <View style={styles.logoMark}>
-          <Text style={styles.logoMarkText}>M</Text>
+          <Text style={styles.logoMarkText}>W</Text>
         </View>
 
         <Text style={styles.appName}>Witness AI</Text>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '45%',
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.silver,
     borderTopLeftRadius: 80,
     borderTopRightRadius: 80,
   },

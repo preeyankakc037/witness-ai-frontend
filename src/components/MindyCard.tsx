@@ -10,13 +10,10 @@ interface MindyCardProps {
 
 export const MindyCard: React.FC<MindyCardProps> = ({ onPress }) => {
   const { user } = useApp();
-  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
-  const themeText = Colors.primary;
-  const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   return (
     <TouchableOpacity
-      style={[styles.card, { borderColor: themeAccent }]}
+      style={styles.card}
       onPress={onPress}
       activeOpacity={0.9}
     >
@@ -45,7 +42,7 @@ const styles = StyleSheet.create({
     ...Shadows.md,
     marginBottom: Spacing.xl,
     borderWidth: 1,
-    borderColor: '#E8F5F0',
+    borderColor: Colors.border,
   },
   content: {
     alignItems: 'center',

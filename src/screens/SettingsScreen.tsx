@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  Switch, TouchableOpacity,
+  Switch, TouchableOpacity, TextInput,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -71,17 +71,29 @@ export const SettingsScreen = () => {
           </View>
           <View style={[styles.row, styles.rowBorder, !user.remindersEnabled && styles.disabled]}>
             <View style={styles.rowLabelGroup}>
-              <Ionicons name="sunny-outline" size={22} color={Colors.warning} style={{ marginRight: 12 }} />
+              <Ionicons name="sunny-outline" size={22} color={Colors.accent} style={{ marginRight: 12 }} />
               <Text style={styles.rowLabel}>Wake-up check-in</Text>
             </View>
-            <Text style={styles.rowValue}>{user.wakeTime}</Text>
+            <TextInput
+              style={styles.rowValue}
+              value={user.wakeTime}
+              onChangeText={(text) => setUser({ ...user, wakeTime: text })}
+              placeholder="08:00 AM"
+              editable={user.remindersEnabled}
+            />
           </View>
           <View style={[styles.row, !user.remindersEnabled && styles.disabled]}>
             <View style={styles.rowLabelGroup}>
-              <Ionicons name="moon-outline" size={22} color={Colors.accent} style={{ marginRight: 12 }} />
+              <Ionicons name="moon-outline" size={22} color={Colors.textMuted} style={{ marginRight: 12 }} />
               <Text style={styles.rowLabel}>Evening reflection</Text>
             </View>
-            <Text style={styles.rowValue}>{user.sleepTime}</Text>
+            <TextInput
+              style={styles.rowValue}
+              value={user.sleepTime}
+              onChangeText={(text) => setUser({ ...user, sleepTime: text })}
+              placeholder="09:30 PM"
+              editable={user.remindersEnabled}
+            />
           </View>
         </View>
 
@@ -212,7 +224,13 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.border,
   },
   rowLabel: { ...Typography.body, color: Colors.textPrimary },
-  rowValue: { ...Typography.bodyMedium, color: Colors.textSecondary },
+  rowValue: { 
+    ...Typography.bodyMedium, 
+    color: Colors.textSecondary,
+    textAlign: 'right',
+    padding: 0, // removed for Android default padding
+    minWidth: 80,
+  },
   disabled: { opacity: 0.45 },
   logoutBtn: {
     flexDirection: 'row',

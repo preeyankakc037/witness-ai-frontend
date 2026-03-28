@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   selectedOption: {
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.silver,
     borderColor: Colors.primary,
   },
   optionText: {
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   selectedGoal: {
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.silver,
     borderColor: Colors.primary,
   },
   goalText: {

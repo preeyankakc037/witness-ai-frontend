@@ -24,10 +24,6 @@ export const ChatScreen = ({ route, navigation }: any) => {
   const [responseIndex, setResponseIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
-  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
-  const themeText = Colors.primary;
-  const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
-
   // Pulse animation for "AI is typing"
   const typingOpacity = useRef(new Animated.Value(0)).current;
   const [isTyping, setIsTyping] = useState(false);
@@ -99,11 +95,11 @@ export const ChatScreen = ({ route, navigation }: any) => {
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="chevron-back" size={28} color={Colors.textPrimary} />
+          <Ionicons name="chevron-back" size={28} color="#9CA3AF" />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
-          <View style={[styles.headerAvatar, { backgroundColor: themeBg, borderColor: themeAccent }]}>
-            <Text style={{ color: themeText, fontWeight: '800', fontSize: 18 }}>M</Text>
+          <View style={[styles.headerAvatar, { backgroundColor: Colors.silver, borderColor: Colors.border }]}>
+            <Text style={{ color: Colors.primary, fontWeight: '800', fontSize: 18 }}>M</Text>
           </View>
           <View>
             <Text style={styles.headerTitle}>Mindy</Text>
@@ -137,8 +133,8 @@ export const ChatScreen = ({ route, navigation }: any) => {
         ListFooterComponent={
           isTyping ? (
             <View style={styles.typingRow}>
-              <View style={[styles.typingAvatar, { backgroundColor: themeBg, borderColor: themeAccent }]}>
-                <Ionicons name="chatbubbles" size={12} color={themeText} />
+              <View style={[styles.typingAvatar, { backgroundColor: Colors.silver, borderColor: Colors.border }]}>
+                <Ionicons name="chatbubbles" size={12} color={Colors.primary} />
               </View>
               <Animated.View style={[styles.typingBubble, { opacity: typingOpacity }]}>
                 <Text style={styles.typingDots}>● ● ●</Text>

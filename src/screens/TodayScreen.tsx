@@ -108,12 +108,12 @@ export const TodayScreen = ({ navigation }: any) => {
         {/* ── Header Section ── */}
         <View style={[
           styles.header,
-          { backgroundColor: user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen }
+          { backgroundColor: Colors.primary }
         ]}>
           <View style={styles.headerTop}>
             <View>
-              <Text style={styles.greetingText}>{greeting}</Text>
-              <Text style={styles.dateText}>{subGreeting}</Text>
+              <Text style={[styles.greetingText, { color: '#FFFFFF' }]}>{greeting}</Text>
+              <Text style={[styles.dateText, { color: 'rgba(255,255,255,0.85)' }]}>{subGreeting}</Text>
             </View>
             <View style={styles.stickerHeaderPos}>
               <GenderSticker gender={(user.gender as any) || 'other'} size={100} />
@@ -156,7 +156,7 @@ export const TodayScreen = ({ navigation }: any) => {
               <Ionicons
                 name={isNudgeExpanded ? "chevron-up" : "chevron-down"}
                 size={20}
-                color={Colors.textSecondary}
+                color="#9CA3AF"
               />
             </View>
 

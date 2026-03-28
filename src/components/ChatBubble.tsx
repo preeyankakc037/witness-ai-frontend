@@ -11,18 +11,15 @@ interface ChatBubbleProps {
 export const ChatBubble: React.FC<ChatBubbleProps> = ({ text, sender }) => {
   const isUser = sender === 'user';
   const { user } = useApp();
-  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
-  const themeText = user.gender === 'female' ? '#EC4899' : user.gender === 'male' ? '#6366F1' : '#10B981';
-  const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   return (
     <View style={[styles.row, isUser ? styles.rowUser : styles.rowAI]}>
       {!isUser && (
-        <View style={[styles.avatar, { backgroundColor: themeBg, borderColor: themeAccent }]}>
-          <Text style={[styles.avatarText, { color: themeText }]}>M</Text>
+        <View style={[styles.avatar, { backgroundColor: Colors.silver, borderColor: Colors.border, borderWidth: 1 }]}>
+          <Text style={[styles.avatarText, { color: Colors.primary }]}>M</Text>
         </View>
       )}
-      <View style={[styles.bubble, isUser ? { backgroundColor: themeText, ...Shadows.sm } : styles.bubbleAI]}>
+      <View style={[styles.bubble, isUser ? { backgroundColor: Colors.primary, ...Shadows.sm } : styles.bubbleAI]}>
         <Text style={[styles.text, isUser ? styles.textUser : styles.textAI]}>
           {text}
         </Text>
