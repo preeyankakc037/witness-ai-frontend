@@ -77,7 +77,7 @@ export const TabNavigator = ({ navigation }: any) => {
           name="Add"
           component={DummyScreen}
           options={{
-            tabBarButton: (props) => (
+            tabBarButton: (props: any) => (
               <TouchableOpacity
                 {...props}
                 style={styles.centerBtnWrap}
@@ -148,10 +148,10 @@ const styles = StyleSheet.create({
     width: 52,
     height: 52,
     borderRadius: 26,
-    backgroundColor: '#7061F0',
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: Colors.accent,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.3,
     shadowRadius: 12,

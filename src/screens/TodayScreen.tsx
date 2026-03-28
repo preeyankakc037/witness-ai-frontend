@@ -68,7 +68,13 @@ export const TodayScreen = ({ navigation }: any) => {
       
       {/* ── Top Bar ── */}
       <View style={styles.topBar}>
-        <DynamicAvatar gender={user.gender} size={44} label={user.name ? user.name[0].toUpperCase() : 'S'} />
+        <TouchableOpacity 
+          style={styles.settingsBtn} 
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('Settings')}
+        >
+          <Ionicons name="settings-outline" size={26} color={Colors.textPrimary} />
+        </TouchableOpacity>
         <TouchableOpacity 
           style={styles.notifBtn} 
           activeOpacity={0.7}
@@ -85,19 +91,24 @@ export const TodayScreen = ({ navigation }: any) => {
       >
         {/* ── Header Section ── */}
         <View style={styles.header}>
-          <Text style={styles.greetingText}>{greeting}</Text>
-          <Text style={styles.dateText}>{subGreeting}</Text>
+          <View style={styles.headerTop}>
+            <View>
+              <Text style={styles.greetingText}>{greeting}</Text>
+              <Text style={styles.dateText}>{subGreeting}</Text>
+            </View>
+            <View style={styles.stickerHeaderPos}>
+              <GenderSticker gender={(user.gender as any) || 'other'} size={110} />
+            </View>
+          </View>
           
           <View style={styles.dayChip}>
+            <View style={styles.dayDot} />
             <Text style={styles.dayChipText}>Day {daysActive}</Text>
           </View>
         </View>
 
-        {/* ── Sticker & Question ── */}
-        <View style={styles.stickerContainer}>
-          <View style={styles.stickerPos}>
-            <GenderSticker gender={user.gender} size={130} />
-          </View>
+        {/* ── Question ── */}
+        <View style={styles.questionContainer}>
           <Text style={styles.questionText}>How are you doing?</Text>
         </View>
 
@@ -105,7 +116,7 @@ export const TodayScreen = ({ navigation }: any) => {
         <View style={styles.levelsCard}>
           <View style={styles.levelsRow}>
             <VerticalLevel label="Energy" value={energy} onChange={setEnergy} activeColor="#A7F3D0" />
-            <VerticalLevel label="Pressure" value={pressure} onChange={setPressure} activeColor="#FECACA" />
+            <VerticalLevel label="Pressure" value={pressure} onChange={setPressure} activeColor={Colors.accent} />
             <VerticalLevel label="Connection" value={connection} onChange={setConnection} activeColor="#C7D2FE" />
           </View>
         </View>
@@ -168,6 +179,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
+  settingsBtn: {
+    width: 44,
+    height: 44,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
   notifBadge: {
     position: 'absolute',
     top: 10,
@@ -183,54 +200,68 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   header: {
-    alignItems: 'center',
+    paddingHorizontal: Spacing.lg,
     marginTop: Spacing.md,
     marginBottom: Spacing.lg,
   },
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
   greetingText: {
     fontSize: 28,
-    fontWeight: '800', // Thicker
+    fontWeight: '800',
     color: Colors.textPrimary,
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
     letterSpacing: -0.5,
   },
   dateText: {
-    fontSize: 15,
-    color: Spacing.lg ? Colors.textSecondary : '#6B7280',
+    fontSize: 16,
+    color: Colors.textSecondary,
     marginTop: 4,
     fontWeight: '500',
+    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'sans-serif-light',
+  },
+  stickerHeaderPos: {
+    marginTop: -10,
+    marginRight: -10,
   },
   dayChip: {
-    marginTop: 16,
-    paddingHorizontal: 32,
-    paddingVertical: 10,
-    borderRadius: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    backgroundColor: '#F3F4F6', // Lighter grey
     borderWidth: 1,
-    borderColor: '#F3F4F6',
-    backgroundColor: '#FAFAFA',
+    borderColor: '#E5E7EB',
+  },
+  dayDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: Colors.primary,
+    marginRight: 10,
   },
   dayChipText: {
     fontSize: 14,
     fontWeight: '700',
     color: Colors.textPrimary,
   },
-  stickerContainer: {
+  questionContainer: {
+    alignItems: 'flex-start',
     paddingHorizontal: Spacing.lg,
-    marginTop: Spacing.md,
-    marginBottom: Spacing.md,
-  },
-  stickerPos: {
-    position: 'absolute',
-    right: 24,
-    top: -40,
-    zIndex: 1,
+    marginVertical: Spacing.lg,
   },
   questionText: {
-    fontSize: 23,
-    fontWeight: '700',
+    fontSize: 24,
+    fontWeight: '800',
     color: Colors.textPrimary,
-    marginTop: 24,
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    fontFamily: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'sans-serif-medium',
+    textAlign: 'left',
   },
   levelsCard: {
     marginHorizontal: Spacing.lg,

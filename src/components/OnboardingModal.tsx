@@ -15,7 +15,13 @@ const GOALS = [
   "Mental clarity",
 ];
 
-export const OnboardingModal: React.FC<{ visible: boolean }> = ({ visible }) => {
+interface OnboardingModalProps {
+  visible: boolean;
+  onGuest?: () => void;
+  onLogin?: () => void;
+}
+
+export const OnboardingModal: React.FC<OnboardingModalProps> = ({ visible, onGuest, onLogin }) => {
   const { setUser, user, setOnboardingComplete } = useApp();
   const [step, setStep] = useState(1);
   const [name, setName] = useState('');

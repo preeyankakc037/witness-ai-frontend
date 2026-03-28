@@ -94,3 +94,4 @@ Witness AI is designed with your privacy in mind. Your emotional data is yours, 
 ---
 
 Created with ❤️ by the Witness AI Team.
+o

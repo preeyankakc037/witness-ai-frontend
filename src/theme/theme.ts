@@ -2,14 +2,14 @@
 // Single source of truth for all colors, typography, spacing, and shadows.
 
 export const Colors = {
-  // Primary green palette
-  primary: '#4CAF90',
-  primaryLight: '#F0F9F7',
-  primaryDark: '#3D8C73',
+  // Primary purple palette (Brand)
+  primary: '#7B6CF6',
+  primaryLight: '#F3F2FF',
+  primaryDark: '#5A4EE0',
 
-  // Accent purple
-  accent: '#7B6CF6',
-  accentLight: '#F3F2FF',
+  // Accent Orange (Tertiary)
+  accent: '#FF7A00',
+  accentLight: '#FFF4EB',
 
   // Backgrounds
   background: '#F8FAF9',
@@ -65,10 +65,10 @@ export const Radius = {
 
 export const Shadows = {
   sm: {
-    shadowColor: '#1F2937',
+    shadowColor: '#7B6CF6',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
     elevation: 2,
   },
   md: {
@@ -85,10 +85,17 @@ export const Shadows = {
     shadowRadius: 24,
     elevation: 8,
   },
-  green: {
-    shadowColor: '#3EB489',
+  purple: {
+    shadowColor: '#7B6CF6',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.22,
+    shadowRadius: 18,
+    elevation: 10,
+  },
+  orange: {
+    shadowColor: '#FF7A00',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
     shadowRadius: 18,
     elevation: 10,
   },

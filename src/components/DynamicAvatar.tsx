@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { BlinkingEyes } from './BlinkingEyes';
-import { Colors, Radius, Typography } from '../theme/theme';
+import { Colors, Radius, Typography, Shadows } from '../theme/theme';
 
 interface DynamicAvatarProps {
   gender: 'female' | 'male' | 'other';
