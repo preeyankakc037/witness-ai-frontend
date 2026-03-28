@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Typography, Radius, Spacing, Shadows } from '../theme/theme';
 import { InsightCard } from '../components/InsightCard';
+import { useApp } from '../context/AppContext';
 
 const WEEK_DATA = [
   { day: 'M', value: 0.4, active: false },
@@ -20,6 +21,11 @@ const WEEK_DATA = [
 
 export const AnalysisScreen = () => {
   const insets = useSafeAreaInsets();
+  const { user } = useApp();
+
+  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
+  const themeText = user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46';
+  const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   return (
     <View style={[styles.safe, { paddingTop: insets.top }]}>
@@ -27,8 +33,8 @@ export const AnalysisScreen = () => {
 
       <View style={styles.header}>
         <View style={styles.headerTitleRow}>
-          <Ionicons name="pulse" size={28} color={Colors.primary} style={{ marginRight: 8 }} />
-          <Text style={styles.headerTitle}>Your Patterns</Text>
+          <Ionicons name="pulse" size={28} color={themeText} style={{ marginRight: 8 }} />
+          <Text style={[styles.headerTitle, { color: themeText }]}>Your Patterns</Text>
         </View>
         <Text style={styles.headerSub}>Based on your reflections</Text>
       </View>
@@ -85,22 +91,22 @@ export const AnalysisScreen = () => {
         </View>
 
         {/* Weekly Summary */}
-        <View style={[styles.summaryCard, { backgroundColor: Colors.softPink }]}>
-          <Text style={[styles.summaryTitle, { color: Colors.primary, opacity: 0.8 }]}>This Week</Text>
+        <View style={[styles.summaryCard, { backgroundColor: themeBg }]}>
+          <Text style={[styles.summaryTitle, { color: themeText, opacity: 0.8 }]}>This Week</Text>
           <View style={styles.summaryRow}>
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: Colors.primary }]}>5</Text>
-              <Text style={[styles.summaryLabel, { color: Colors.primary }]}>Check-ins</Text>
+              <Text style={[styles.summaryValue, { color: themeText }]}>5</Text>
+              <Text style={[styles.summaryLabel, { color: themeText }]}>Check-ins</Text>
             </View>
-            <View style={[styles.summaryDivider, { backgroundColor: Colors.primary, opacity: 0.2 }]} />
+            <View style={[styles.summaryDivider, { backgroundColor: themeText, opacity: 0.2 }]} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: Colors.primary }]}>82%</Text>
-              <Text style={[styles.summaryLabel, { color: Colors.primary }]}>Mood score</Text>
+              <Text style={[styles.summaryValue, { color: themeText }]}>82%</Text>
+              <Text style={[styles.summaryLabel, { color: themeText }]}>Mood score</Text>
             </View>
-            <View style={[styles.summaryDivider, { backgroundColor: Colors.primary, opacity: 0.2 }]} />
+            <View style={[styles.summaryDivider, { backgroundColor: themeText, opacity: 0.2 }]} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: Colors.primary }]}>3</Text>
-              <Text style={[styles.summaryLabel, { color: Colors.primary }]}>Reflections</Text>
+              <Text style={[styles.summaryValue, { color: themeText }]}>3</Text>
+              <Text style={[styles.summaryLabel, { color: themeText }]}>Reflections</Text>
             </View>
           </View>
         </View>

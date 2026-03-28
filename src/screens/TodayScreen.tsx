@@ -137,8 +137,19 @@ export const TodayScreen = ({ navigation }: any) => {
               </View>
             </View>
             <View style={styles.nudgeActions}>
-              <TouchableOpacity style={styles.nudgeStartBtn}>
-                <Text style={styles.nudgeStartText}>Start</Text>
+              <TouchableOpacity
+                style={[
+                  styles.nudgeStartBtn,
+                  {
+                    backgroundColor: user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen,
+                    borderColor: user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0'
+                  }
+                ]}
+              >
+                <Text style={[
+                  styles.nudgeStartText,
+                  { color: user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46' }
+                ]}>Start</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.nudgeEditBtn}

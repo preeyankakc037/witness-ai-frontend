@@ -35,7 +35,7 @@ export const SettingsScreen = () => {
         <View style={styles.card}>
           <View style={styles.profileRow}>
             <View style={[styles.avatar, { backgroundColor: themeBg, borderColor: themeBorder }]}>
-               <Ionicons name={user.isGuest ? 'person-outline' : 'person'} size={32} color={themeText} />
+              <Ionicons name={user.isGuest ? 'person-outline' : 'person'} size={32} color={themeText} />
             </View>
             <View style={styles.profileInfo}>
               <Text style={styles.profileName}>
@@ -59,27 +59,27 @@ export const SettingsScreen = () => {
         <View style={styles.card}>
           <View style={[styles.row, styles.rowBorder]}>
             <View style={styles.rowLabelGroup}>
-               <Ionicons name="notifications-outline" size={22} color={Colors.primary} style={{ marginRight: 12 }} />
-               <Text style={styles.rowLabel}>Daily Reminders</Text>
+              <Ionicons name="notifications-outline" size={22} color={themeText} style={{ marginRight: 12 }} />
+              <Text style={styles.rowLabel}>Daily Reminders</Text>
             </View>
             <Switch
               value={user.remindersEnabled}
               onValueChange={toggleReminders}
-              trackColor={{ false: Colors.border, true: Colors.primary }}
+              trackColor={{ false: Colors.border, true: themeText }}
               thumbColor="#FFFFFF"
             />
           </View>
           <View style={[styles.row, styles.rowBorder, !user.remindersEnabled && styles.disabled]}>
             <View style={styles.rowLabelGroup}>
-               <Ionicons name="sunny-outline" size={22} color={Colors.warning} style={{ marginRight: 12 }} />
-               <Text style={styles.rowLabel}>Wake-up check-in</Text>
+              <Ionicons name="sunny-outline" size={22} color={Colors.warning} style={{ marginRight: 12 }} />
+              <Text style={styles.rowLabel}>Wake-up check-in</Text>
             </View>
             <Text style={styles.rowValue}>{user.wakeTime}</Text>
           </View>
           <View style={[styles.row, !user.remindersEnabled && styles.disabled]}>
             <View style={styles.rowLabelGroup}>
-               <Ionicons name="moon-outline" size={22} color={Colors.accent} style={{ marginRight: 12 }} />
-               <Text style={styles.rowLabel}>Evening reflection</Text>
+              <Ionicons name="moon-outline" size={22} color={Colors.accent} style={{ marginRight: 12 }} />
+              <Text style={styles.rowLabel}>Evening reflection</Text>
             </View>
             <Text style={styles.rowValue}>{user.sleepTime}</Text>
           </View>
@@ -90,15 +90,15 @@ export const SettingsScreen = () => {
         <View style={styles.card}>
           <TouchableOpacity style={[styles.row, styles.rowBorder]}>
             <View style={styles.rowLabelGroup}>
-               <Ionicons name="key-outline" size={22} color={Colors.textSecondary} style={{ marginRight: 12 }} />
-               <Text style={styles.rowLabel}>Change Password</Text>
+              <Ionicons name="key-outline" size={22} color={Colors.textSecondary} style={{ marginRight: 12 }} />
+              <Text style={styles.rowLabel}>Change Password</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color={Colors.textMuted} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.row}>
             <View style={styles.rowLabelGroup}>
-               <Ionicons name="help-circle-outline" size={22} color={Colors.textSecondary} style={{ marginRight: 12 }} />
-               <Text style={styles.rowLabel}>FAQs & Support</Text>
+              <Ionicons name="help-circle-outline" size={22} color={Colors.textSecondary} style={{ marginRight: 12 }} />
+              <Text style={styles.rowLabel}>FAQs & Support</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color={Colors.textMuted} />
           </TouchableOpacity>

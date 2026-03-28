@@ -19,10 +19,14 @@ const AI_RESPONSES = [
 ];
 
 export const ChatScreen = ({ route, navigation }: any) => {
-  const { messages, addMessage } = useApp();
+  const { user, messages, addMessage } = useApp();
   const [isListening, setIsListening] = useState(route?.params?.startListening ?? false);
   const [responseIndex, setResponseIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
+
+  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
+  const themeText = user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46';
+  const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   // Pulse animation for "AI is typing"
   const typingOpacity = useRef(new Animated.Value(0)).current;
@@ -98,8 +102,8 @@ export const ChatScreen = ({ route, navigation }: any) => {
           <Ionicons name="chevron-back" size={28} color={Colors.textPrimary} />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
-          <View style={styles.headerAvatar}>
-             <Ionicons name="chatbubble-ellipses-outline" size={20} color={Colors.primary} />
+          <View style={[styles.headerAvatar, { backgroundColor: themeBg, borderColor: themeAccent }]}>
+             <Text style={{ color: themeText, fontWeight: '800', fontSize: 18 }}>M</Text>
           </View>
           <View>
             <Text style={styles.headerTitle}>Mindy</Text>
