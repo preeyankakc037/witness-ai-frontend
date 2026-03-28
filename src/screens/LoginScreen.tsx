@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { Colors, Typography, Radius, Spacing, Shadows } from '../theme/theme';
 
 const { width } = Dimensions.get('window');
 
@@ -8,25 +9,25 @@ export const LoginScreen = ({ navigation }: any) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="dark" />
-      
+
       <View style={styles.container}>
         {/* Floating Planet Graphic */}
         <View style={styles.graphicContainer}>
           {/* Main glowing planet */}
           <View style={styles.planetOuterGlow}>
-             <View style={styles.planet} />
+            <View style={styles.planet} />
           </View>
-          
+
           {/* Saturn-like ring (simplified using a tilted ellipse) */}
           <View style={styles.ringFront} />
-          
+
           {/* Tiny floating mood blobs (simulated natively with colored circles) */}
           <View style={[styles.microBlob, { top: -20, left: '20%', backgroundColor: '#DADAFA', width: 30, height: 20, borderRadius: 10 }]} />
           <View style={[styles.microBlob, { top: '30%', right: '10%', backgroundColor: '#FFD166', width: 20, height: 20, borderRadius: 10 }]} />
           <View style={[styles.microBlob, { bottom: '20%', left: '15%', backgroundColor: '#6A5ACD', width: 25, height: 20, borderRadius: 10 }]} />
           <View style={[styles.microBlob, { bottom: '15%', right: '25%', backgroundColor: '#FF9F89', width: 20, height: 16, borderRadius: 8 }]} />
           <View style={[styles.microBlob, { top: '40%', left: '25%', backgroundColor: '#FF9F89', width: 14, height: 14, borderRadius: 7 }]} />
-          
+
           {/* Little spark stars (+) */}
           <Text style={[styles.spark, { top: 0, right: '30%' }]}>✨</Text>
           <Text style={[styles.spark, { bottom: '30%', left: '5%' }]}>✨</Text>
@@ -42,14 +43,14 @@ export const LoginScreen = ({ navigation }: any) => {
 
         {/* Buttons */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.primaryButton}
             onPress={() => navigation.navigate('Main')}
           >
             <Text style={styles.primaryButtonText}>Get Started</Text>
           </TouchableOpacity>
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={styles.secondaryButton}
             onPress={() => navigation.navigate('Main')}
           >
@@ -146,10 +147,11 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     width: '100%',
-    backgroundColor: '#0F172A', // Deep Navy black
+    backgroundColor: Colors.primary, 
     paddingVertical: 18,
     borderRadius: 30,
     alignItems: 'center',
+    ...Shadows.purple,
   },
   primaryButtonText: {
     color: '#FFFFFF',

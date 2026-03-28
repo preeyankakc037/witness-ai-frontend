@@ -34,7 +34,7 @@ export const SplashScreen = () => {
       >
         {/* Logo mark */}
         <View style={styles.logoMark}>
-          <Text style={styles.logoMarkText}>W</Text>
+          <Text style={styles.logoMarkText}>M</Text>
         </View>
 
         <Text style={styles.appName}>Witness AI</Text>

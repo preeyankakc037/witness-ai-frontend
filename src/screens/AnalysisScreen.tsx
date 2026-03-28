@@ -24,7 +24,7 @@ export const AnalysisScreen = () => {
   const { user } = useApp();
 
   const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
-  const themeText = user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46';
+  const themeText = Colors.primary;
   const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   return (
@@ -34,7 +34,7 @@ export const AnalysisScreen = () => {
       <View style={styles.header}>
         <View style={styles.headerTitleRow}>
           <Ionicons name="pulse" size={28} color={themeText} style={{ marginRight: 8 }} />
-          <Text style={[styles.headerTitle, { color: themeText }]}>Your Patterns</Text>
+          <Text style={[styles.headerTitle, { color: '#000000' }]}>Your Patterns</Text>
         </View>
         <Text style={styles.headerSub}>Based on your reflections</Text>
       </View>
@@ -74,9 +74,9 @@ export const AnalysisScreen = () => {
                         {
                           height: `${item.value * 100}%`,
                           backgroundColor: item.active
-                            ? Colors.softBlue // Palette Blue
-                            : Colors.softPink, // Palette Pink
-                          borderColor: item.active ? '#94A3B8' : '#FBCFE8',
+                            ? Colors.primary 
+                            : Colors.beige, 
+                          borderColor: item.active ? Colors.primary : '#E2E8F0',
                         },
                       ]}
                     />
@@ -92,21 +92,21 @@ export const AnalysisScreen = () => {
 
         {/* Weekly Summary */}
         <View style={[styles.summaryCard, { backgroundColor: themeBg }]}>
-          <Text style={[styles.summaryTitle, { color: themeText, opacity: 0.8 }]}>This Week</Text>
+          <Text style={[styles.summaryTitle, { color: '#000000', opacity: 0.6 }]}>This Week</Text>
           <View style={styles.summaryRow}>
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: themeText }]}>5</Text>
-              <Text style={[styles.summaryLabel, { color: themeText }]}>Check-ins</Text>
+              <Text style={[styles.summaryValue, { color: '#000000' }]}>5</Text>
+              <Text style={[styles.summaryLabel, { color: '#000000' }]}>Check-ins</Text>
             </View>
-            <View style={[styles.summaryDivider, { backgroundColor: themeText, opacity: 0.2 }]} />
+            <View style={[styles.summaryDivider, { backgroundColor: '#000000', opacity: 0.1 }]} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: themeText }]}>82%</Text>
-              <Text style={[styles.summaryLabel, { color: themeText }]}>Mood score</Text>
+              <Text style={[styles.summaryValue, { color: '#000000' }]}>82%</Text>
+              <Text style={[styles.summaryLabel, { color: '#000000' }]}>Mood score</Text>
             </View>
-            <View style={[styles.summaryDivider, { backgroundColor: themeText, opacity: 0.2 }]} />
+            <View style={[styles.summaryDivider, { backgroundColor: '#000000', opacity: 0.1 }]} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: themeText }]}>3</Text>
-              <Text style={[styles.summaryLabel, { color: themeText }]}>Reflections</Text>
+              <Text style={[styles.summaryValue, { color: '#000000' }]}>3</Text>
+              <Text style={[styles.summaryLabel, { color: '#000000' }]}>Reflections</Text>
             </View>
           </View>
         </View>
@@ -118,14 +118,14 @@ export const AnalysisScreen = () => {
 
         <InsightCard
           iconName="time-outline"
-          iconColor={Colors.primary}
+          iconColor={themeText}
           text="Evening Reflection Pattern"
           subtext="Reflecting before 9 PM helps your sleep score."
           variant="default"
         />
         <InsightCard
           iconName="trending-up-outline"
-          iconColor={Colors.primary}
+          iconColor={themeText}
           text="Upward Weekly Trend"
           subtext="Your mood has improved by 15% this week."
           variant="success"

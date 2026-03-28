@@ -4,6 +4,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import { Colors, Typography, Radius, Spacing, Shadows } from '../theme/theme';
+import { useApp } from '../context/AppContext';
 
 interface ActionModalProps {
   visible: boolean;
@@ -18,6 +19,9 @@ const OPTIONS = [
 ];
 
 export const ActionModal: React.FC<ActionModalProps> = ({ visible, onClose, onSelect }) => {
+  const { user } = useApp();
+  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
+
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent>
       <TouchableWithoutFeedback onPress={onClose}>
@@ -34,7 +38,7 @@ export const ActionModal: React.FC<ActionModalProps> = ({ visible, onClose, onSe
                   onPress={() => { onClose(); onSelect(opt.key); }}
                   activeOpacity={0.7}
                 >
-                  <View style={styles.iconWrap}>
+                  <View style={[styles.iconWrap, { backgroundColor: themeBg }]}>
                     <Text style={styles.optIcon}>{opt.icon}</Text>
                   </View>
                   <View style={styles.optText}>

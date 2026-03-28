@@ -83,7 +83,7 @@ export const TodayScreen = ({ navigation }: any) => {
           onPress={() => setShowNotifs(true)}
         >
           <Ionicons name="notifications-outline" size={26} color={Colors.textPrimary} />
-          <View style={styles.notifBadge} />
+          <View style={[styles.notifBadge, { backgroundColor: Colors.primary }]} />
         </TouchableOpacity>
       </View>
 
@@ -141,14 +141,14 @@ export const TodayScreen = ({ navigation }: any) => {
                 style={[
                   styles.nudgeStartBtn,
                   {
-                    backgroundColor: user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen,
-                    borderColor: user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0'
+                    backgroundColor: Colors.beige,
+                    borderColor: Colors.border
                   }
                 ]}
               >
                 <Text style={[
                   styles.nudgeStartText,
-                  { color: user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46' }
+                  { color: Colors.primary }
                 ]}>Start</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -162,8 +162,8 @@ export const TodayScreen = ({ navigation }: any) => {
         </View>
 
         {/* ── Instant Insight ── */}
-        <View style={styles.insightCard}>
-          <Text style={styles.insightTitle}>Instant Insight</Text>
+        <View style={[styles.insightCard, { borderLeftColor: Colors.primary }]}>
+          <Text style={[styles.insightTitle, { color: Colors.primary }]}>Instant Insight</Text>
           <Text style={styles.insightText}>{insight}</Text>
         </View>
 
@@ -191,7 +191,7 @@ export const TodayScreen = ({ navigation }: any) => {
               </TouchableOpacity>
             </View>
             <View style={styles.notifItem}>
-              <View style={styles.notifDot} />
+              <View style={[styles.notifDot, { backgroundColor: Colors.primary }]} />
               <View>
                 <Text style={styles.notifItemTitle}>Welcome back, {user.name}!</Text>
                 <Text style={styles.notifItemSub}>Time for a quick emotion check-in.</Text>
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#7061F0',
+    backgroundColor: Colors.primary, // Primary branding (will be dynamic)
     borderWidth: 1.5,
     borderColor: '#FFFFFF',
   },
@@ -401,18 +401,18 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   insightCard: {
-    backgroundColor: '#F3E8FF', // Light Purple
+    backgroundColor: Colors.beige, // Refined to Beige
     borderRadius: Radius.md,
     padding: Spacing.lg,
     marginHorizontal: Spacing.lg,
     marginBottom: Spacing.xl,
     ...Shadows.sm,
     borderLeftWidth: 4,
-    borderLeftColor: Colors.primary, // Solid brand purple border
+    borderLeftColor: Colors.primary,
   },
   insightTitle: {
     fontSize: 12,
-    color: Colors.primary, // Brand purple
+    color: Colors.primary,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
     marginBottom: 8,

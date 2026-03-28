@@ -2,27 +2,33 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Typography, Radius, Spacing, Shadows } from '../theme/theme';
+import { useApp } from '../context/AppContext';
 
 interface MindyCardProps {
   onPress: () => void;
 }
 
 export const MindyCard: React.FC<MindyCardProps> = ({ onPress }) => {
+  const { user } = useApp();
+  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
+  const themeText = Colors.primary;
+  const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
+
   return (
     <TouchableOpacity
-      style={styles.card}
+      style={[styles.card, { borderColor: themeAccent }]}
       onPress={onPress}
       activeOpacity={0.9}
     >
       <View style={styles.content}>
-        <View style={styles.iconWrap}>
-          <Ionicons name="sparkles-outline" size={28} color={Colors.primary} />
+        <View style={[styles.iconWrap, { backgroundColor: themeBg }]}>
+          <Ionicons name="sparkles-outline" size={28} color={themeText} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.title}>Talk with Mindy</Text>
           <Text style={styles.subtitle}>Start your conversation, what's on mind.</Text>
         </View>
-        <TouchableOpacity style={styles.btn} onPress={onPress}>
+        <TouchableOpacity style={[styles.btn, { backgroundColor: themeText }]} onPress={onPress}>
           <Text style={styles.btnText}>Start Conversation</Text>
         </TouchableOpacity>
       </View>

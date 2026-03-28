@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Colors, Typography, Radius, Spacing, Shadows } from '../theme/theme';
+import { useApp } from '../context/AppContext';
 
 interface ChatBubbleProps {
   text: string;
@@ -9,15 +10,19 @@ interface ChatBubbleProps {
 
 export const ChatBubble: React.FC<ChatBubbleProps> = ({ text, sender }) => {
   const isUser = sender === 'user';
+  const { user } = useApp();
+  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
+  const themeText = user.gender === 'female' ? '#EC4899' : user.gender === 'male' ? '#6366F1' : '#10B981';
+  const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   return (
     <View style={[styles.row, isUser ? styles.rowUser : styles.rowAI]}>
       {!isUser && (
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>W</Text>
+        <View style={[styles.avatar, { backgroundColor: themeBg, borderColor: themeAccent }]}>
+          <Text style={[styles.avatarText, { color: themeText }]}>M</Text>
         </View>
       )}
-      <View style={[styles.bubble, isUser ? styles.bubbleUser : styles.bubbleAI]}>
+      <View style={[styles.bubble, isUser ? { backgroundColor: themeText, ...Shadows.sm } : styles.bubbleAI]}>
         <Text style={[styles.text, isUser ? styles.textUser : styles.textAI]}>
           {text}
         </Text>
@@ -59,11 +64,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: Radius.lg,
-  },
-  bubbleUser: {
-    backgroundColor: Colors.primary,
-    borderBottomRightRadius: Radius.sm,
-    ...Shadows.green,
   },
   bubbleAI: {
     backgroundColor: Colors.card,

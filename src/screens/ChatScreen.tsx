@@ -25,7 +25,7 @@ export const ChatScreen = ({ route, navigation }: any) => {
   const flatListRef = useRef<FlatList>(null);
 
   const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
-  const themeText = user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46';
+  const themeText = Colors.primary;
   const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   // Pulse animation for "AI is typing"
@@ -103,7 +103,7 @@ export const ChatScreen = ({ route, navigation }: any) => {
         </TouchableOpacity>
         <View style={styles.headerCenter}>
           <View style={[styles.headerAvatar, { backgroundColor: themeBg, borderColor: themeAccent }]}>
-             <Text style={{ color: themeText, fontWeight: '800', fontSize: 18 }}>M</Text>
+            <Text style={{ color: themeText, fontWeight: '800', fontSize: 18 }}>M</Text>
           </View>
           <View>
             <Text style={styles.headerTitle}>Mindy</Text>
@@ -137,8 +137,8 @@ export const ChatScreen = ({ route, navigation }: any) => {
         ListFooterComponent={
           isTyping ? (
             <View style={styles.typingRow}>
-              <View style={styles.typingAvatar}>
-                <Ionicons name="chatbubbles" size={12} color={Colors.primary} />
+              <View style={[styles.typingAvatar, { backgroundColor: themeBg, borderColor: themeAccent }]}>
+                <Ionicons name="chatbubbles" size={12} color={themeText} />
               </View>
               <Animated.View style={[styles.typingBubble, { opacity: typingOpacity }]}>
                 <Text style={styles.typingDots}>● ● ●</Text>

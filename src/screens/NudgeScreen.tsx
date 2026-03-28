@@ -31,7 +31,7 @@ export const NudgeScreen = () => {
   const [selectedCat, setSelectedCat] = useState('all');
 
   const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
-  const themeText = user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46';
+  const themeText = Colors.primary;
   const themeAccent = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
 
   const filteredNudges = selectedCat === 'all'
@@ -47,8 +47,8 @@ export const NudgeScreen = () => {
         <Text style={styles.nudgeTitle}>{item.title}</Text>
         <Text style={styles.nudgeDuration}>{item.duration}</Text>
       </View>
-      <TouchableOpacity 
-        style={[styles.startBtn, { backgroundColor: themeBg, borderColor: themeAccent }]} 
+      <TouchableOpacity
+        style={[styles.startBtn, { backgroundColor: themeBg, borderColor: themeAccent }]}
         activeOpacity={0.7}
       >
         <Text style={[styles.startBtnText, { color: themeText }]}>Start</Text>
@@ -59,7 +59,7 @@ export const NudgeScreen = () => {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.header}>
-        <Text style={[styles.title, { color: themeText }]}>Nudges</Text>
+        <Text style={[styles.title, { color: '#000000' }]}>Nudges</Text>
         <Text style={styles.subtitle}>Small actions, big difference</Text>
       </View>
 
@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: Radius.full,
-    backgroundColor: Colors.beige,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#F3F4F6',
   },
   catBtnActive: {
-    backgroundColor: Colors.softGreen,
-    borderColor: '#A7F3D0',
+    backgroundColor: Colors.beige,
+    borderColor: '#E5E7EB',
   },
   catEmoji: {
     fontSize: 16,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
   },
   catLabelActive: {
-    color: '#065F46',
+    color: Colors.primary,
     fontWeight: '700',
   },
   scrollIndicator: {

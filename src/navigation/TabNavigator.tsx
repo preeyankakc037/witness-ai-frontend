@@ -11,6 +11,7 @@ import { AnalysisScreen } from '../screens/AnalysisScreen';
 import { NudgeScreen } from '../screens/NudgeScreen';
 import { ActionModal } from '../components/ActionModal';
 import { Colors, Typography, Shadows } from '../theme/theme';
+import { useApp } from '../context/AppContext';
 
 const Tab = createBottomTabNavigator();
 const DummyScreen = () => null;
@@ -19,15 +20,18 @@ const DummyScreen = () => null;
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
 const TAB_CONFIG: Record<string, { active: IoniconName; inactive: IoniconName; label: string }> = {
-  Home:    { active: 'home',         inactive: 'home-outline',         label: 'Home'    },
-  Journey: { active: 'trending-up',  inactive: 'trending-up-outline',  label: 'Journey' },
-  Nudge:   { active: 'flash',        inactive: 'flash-outline',        label: 'Nudge'   },
-  Mindy:   { active: 'chatbubbles',  inactive: 'chatbubbles-outline',  label: 'Mindy'   },
+  Home: { active: 'home', inactive: 'home-outline', label: 'Home' },
+  Journey: { active: 'trending-up', inactive: 'trending-up-outline', label: 'Journey' },
+  Nudge: { active: 'flash', inactive: 'flash-outline', label: 'Nudge' },
+  Mindy: { active: 'chatbubbles', inactive: 'chatbubbles-outline', label: 'Mindy' },
 };
 
 export const TabNavigator = ({ navigation }: any) => {
+  const { user } = useApp();
   const [modalVisible, setModalVisible] = useState(false);
   const insets = useSafeAreaInsets();
+
+  const themeText = Colors.primary;
 
   const handleActionSelect = () => {
     navigation.navigate('Chat');
@@ -41,11 +45,11 @@ export const TabNavigator = ({ navigation }: any) => {
           return {
             headerShown: false,
             tabBarShowLabel: false,
-            tabBarActiveTintColor: Colors.primary,
+            tabBarActiveTintColor: themeText,
             tabBarInactiveTintColor: '#9CA3AF',
             tabBarStyle: [
               styles.tabBar,
-              { 
+              {
                 height: (Platform.OS === 'ios' ? 70 : 64) + insets.bottom,
                 paddingBottom: insets.bottom > 0 ? insets.bottom - 4 : 12,
               }
@@ -69,7 +73,7 @@ export const TabNavigator = ({ navigation }: any) => {
         }}
       >
         <Tab.Screen name="Home" component={TodayScreen} />
-        
+
         <Tab.Screen name="Mindy" component={ChatScreen} />
 
         {/* Center floating + button */}
@@ -84,7 +88,7 @@ export const TabNavigator = ({ navigation }: any) => {
                 onPress={() => setModalVisible(true)}
                 activeOpacity={0.88}
               >
-                <View style={styles.centerBtn}>
+                <View style={[styles.centerBtn, { backgroundColor: themeText, shadowColor: themeText }]}>
                   <Ionicons name="add" size={32} color="#FFFFFF" />
                 </View>
               </TouchableOpacity>
@@ -129,7 +133,6 @@ const styles = StyleSheet.create({
   },
   tabLabel: {
     ...Typography.captionMedium,
-    color: Colors.primary,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -143,10 +146,8 @@ const styles = StyleSheet.create({
     width: 52,
     height: 52,
     borderRadius: 26,
-    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.3,
     shadowRadius: 12,
