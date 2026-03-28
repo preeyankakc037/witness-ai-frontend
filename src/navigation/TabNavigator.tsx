@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TodayScreen } from '../screens/TodayScreen';
 import { ChatScreen } from '../screens/ChatScreen';
 import { AnalysisScreen } from '../screens/AnalysisScreen';
-import { SettingsScreen } from '../screens/SettingsScreen';
+import { NudgeScreen } from '../screens/NudgeScreen';
 import { ActionModal } from '../components/ActionModal';
 import { Colors, Typography, Shadows } from '../theme/theme';
 
@@ -19,10 +19,10 @@ const DummyScreen = () => null;
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
 const TAB_CONFIG: Record<string, { active: IoniconName; inactive: IoniconName; label: string }> = {
-  Today:    { active: 'leaf',         inactive: 'leaf-outline',         label: 'Home'    },
-  Chat:     { active: 'compass',      inactive: 'compass-outline',      label: 'Reflect' },
-  Analysis: { active: 'trending-up',  inactive: 'trending-up-outline',  label: 'Stats'   },
-  Settings: { active: 'person',       inactive: 'person-outline',       label: 'Profile' },
+  Home:    { active: 'home',         inactive: 'home-outline',         label: 'Home'    },
+  Journey: { active: 'trending-up',  inactive: 'trending-up-outline',  label: 'Journey' },
+  Nudge:   { active: 'flash',        inactive: 'flash-outline',        label: 'Nudge'   },
+  Mindy:   { active: 'chatbubbles',  inactive: 'chatbubbles-outline',  label: 'Mindy'   },
 };
 
 export const TabNavigator = ({ navigation }: any) => {
@@ -56,7 +56,7 @@ export const TabNavigator = ({ navigation }: any) => {
                 <View style={focused ? styles.activeTab : styles.inactiveTab}>
                   <Ionicons
                     name={focused ? cfg.active : cfg.inactive}
-                    size={24}
+                    size={focused ? 28 : 24}
                     color={color}
                   />
                   {focused && (
@@ -68,9 +68,9 @@ export const TabNavigator = ({ navigation }: any) => {
           };
         }}
       >
-        <Tab.Screen name="Today" component={TodayScreen} />
+        <Tab.Screen name="Home" component={TodayScreen} />
         
-        <Tab.Screen name="Chat" component={ChatScreen} />
+        <Tab.Screen name="Mindy" component={ChatScreen} />
 
         {/* Center floating + button */}
         <Tab.Screen
@@ -92,9 +92,9 @@ export const TabNavigator = ({ navigation }: any) => {
           }}
         />
 
-        <Tab.Screen name="Analysis" component={AnalysisScreen} />
+        <Tab.Screen name="Nudge" component={NudgeScreen} />
 
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Journey" component={AnalysisScreen} />
       </Tab.Navigator>
 
       <ActionModal
@@ -117,18 +117,13 @@ const styles = StyleSheet.create({
     ...Shadows.md,
   },
   activeTab: {
-    flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.primaryLight,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 24,
-    gap: 8,
-    minHeight: 44,
+    justifyContent: 'center',
+    minWidth: 50,
+    gap: 2,
   },
   inactiveTab: {
-    width: 48,
-    height: 48,
+    width: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },

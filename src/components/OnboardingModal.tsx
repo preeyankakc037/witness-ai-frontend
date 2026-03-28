@@ -45,6 +45,12 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ visible, onGue
     }
   };
 
+  const handleBack = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
+  };
+
   const toggleGoal = (goal: string) => {
     if (selectedGoals.includes(goal)) {
       setSelectedGoals(selectedGoals.filter(g => g !== goal));
@@ -126,11 +132,19 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ visible, onGue
         style={styles.overlay}
       >
         <View style={styles.card}>
-          {/* Progress Bar */}
-          <View style={styles.progressBar}>
-            {[1, 2, 3].map(i => (
-              <View key={i} style={[styles.progressDot, step >= i && { backgroundColor: Colors.primary }]} />
-            ))}
+          {/* Header with Back Button */}
+          <View style={styles.header}>
+            {step > 1 && (
+              <TouchableOpacity onPress={handleBack} style={styles.backBtn}>
+                <Ionicons name="chevron-back" size={24} color={Colors.textSecondary} />
+              </TouchableOpacity>
+            )}
+            <View style={styles.progressBar}>
+              {[1, 2, 3].map(i => (
+                <View key={i} style={[styles.progressDot, step >= i && { backgroundColor: Colors.primary }]} />
+              ))}
+            </View>
+            {step > 1 && <View style={{ width: 24 }} />}
           </View>
 
           {renderStep()}
@@ -165,11 +179,20 @@ const styles = StyleSheet.create({
     width: '100%',
     ...Shadows.lg,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 32,
+  },
+  backBtn: {
+    padding: 4,
+  },
   progressBar: {
     flexDirection: 'row',
     gap: 8,
-    marginBottom: 32,
     justifyContent: 'center',
+    flex: 1,
   },
   progressDot: {
     width: 40,

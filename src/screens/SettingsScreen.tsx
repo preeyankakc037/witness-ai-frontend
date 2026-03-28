@@ -13,6 +13,10 @@ export const SettingsScreen = () => {
   const { user, setUser } = useApp();
   const insets = useSafeAreaInsets();
 
+  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
+  const themeBorder = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
+  const themeText = user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46';
+
   const toggleReminders = () => {
     setUser({ ...user, remindersEnabled: !user.remindersEnabled });
   };
@@ -30,8 +34,8 @@ export const SettingsScreen = () => {
         <Text style={styles.sectionLabel}>PROFILE</Text>
         <View style={styles.card}>
           <View style={styles.profileRow}>
-            <View style={styles.avatar}>
-               <Ionicons name={user.isGuest ? 'person-outline' : 'person'} size={32} color={Colors.primary} />
+            <View style={[styles.avatar, { backgroundColor: themeBg, borderColor: themeBorder }]}>
+               <Ionicons name={user.isGuest ? 'person-outline' : 'person'} size={32} color={themeText} />
             </View>
             <View style={styles.profileInfo}>
               <Text style={styles.profileName}>
@@ -42,9 +46,9 @@ export const SettingsScreen = () => {
               </Text>
             </View>
           </View>
-          <TouchableOpacity style={styles.actionBtn}>
-            <Ionicons name={user.isGuest ? 'log-in-outline' : 'create-outline'} size={18} color={Colors.primary} style={{ marginRight: 8 }} />
-            <Text style={styles.actionBtnText}>
+          <TouchableOpacity style={[styles.actionBtn, { backgroundColor: themeBg }]}>
+            <Ionicons name={user.isGuest ? 'log-in-outline' : 'create-outline'} size={18} color={themeText} style={{ marginRight: 8 }} />
+            <Text style={[styles.actionBtnText, { color: themeText }]}>
               {user.isGuest ? 'Login / Sign Up' : 'Edit Profile'}
             </Text>
           </TouchableOpacity>

@@ -1,24 +1,38 @@
 // ─── Witness AI — Design System ──────────────────────────────────────────────
 // Single source of truth for all colors, typography, spacing, and shadows.
+import { Platform } from 'react-native';
+
+export const Palette = {
+  beige: '#F7F5EE',
+  green: '#ECFBF1',
+  blue: '#EFF1FB',
+  pink: '#FFF5F5',
+};
 
 export const Colors = {
   // Primary purple palette (Brand)
   primary: '#7B6CF6',
-  primaryLight: '#F3F2FF',
+  primaryLight: Palette.pink, // Soft pink/purple base
   primaryDark: '#5A4EE0',
+
+  // Accent Colors from Palette
+  beige: Palette.beige,
+  softGreen: Palette.green,
+  softBlue: Palette.blue,
+  softPink: Palette.pink,
 
   // Accent Orange (Tertiary)
   accent: '#FF7A00',
   accentLight: '#FFF4EB',
 
   // Backgrounds
-  background: '#F8FAF9',
+  background: '#FDFCFB', // Clean, off-white background
   card: '#FFFFFF',
-  surface: '#F2F5F4',
+  surface: '#F8F9FA',
 
   // Text
   textPrimary: '#1F2937',
-  textSecondary: '#6B7280',
+  textSecondary: '#4B5563',
   textMuted: '#9CA3AF',
   textOnPrimary: '#FFFFFF',
 
@@ -39,6 +53,12 @@ export const Typography = {
   title: { fontSize: 26, fontWeight: '700' as const, letterSpacing: -0.3 },
   heading: { fontSize: 20, fontWeight: '700' as const },
   subheading: { fontSize: 17, fontWeight: '600' as const },
+  question: { 
+    fontSize: 22, 
+    fontWeight: '400' as const, 
+    letterSpacing: 0.2,
+    fontFamily: Platform.OS === 'ios' ? 'Avenir-Medium' : 'sans-serif-medium' 
+  },
   body: { fontSize: 15, fontWeight: '400' as const, lineHeight: 22 },
   bodyMedium: { fontSize: 15, fontWeight: '500' as const },
   caption: { fontSize: 13, fontWeight: '400' as const },

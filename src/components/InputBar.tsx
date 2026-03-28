@@ -17,14 +17,12 @@ interface InputBarProps {
   onSend: (text: string) => void;
   onMicPress: () => void;
   isListening: boolean;
-  smartPrompts?: string[];
 }
 
 export const InputBar: React.FC<InputBarProps> = ({
   onSend,
   onMicPress,
   isListening,
-  smartPrompts,
 }) => {
   const [inputText, setInputText] = useState('');
 
@@ -41,25 +39,6 @@ export const InputBar: React.FC<InputBarProps> = ({
       keyboardVerticalOffset={90}
     >
       <View style={styles.container}>
-        {/* Smart Prompts */}
-        {smartPrompts && smartPrompts.length > 0 && !isListening && (
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.promptsContainer}
-          >
-            {smartPrompts.map((prompt, i) => (
-              <TouchableOpacity
-                key={i}
-                style={styles.promptChip}
-                onPress={() => onSend(prompt)}
-              >
-                <Text style={styles.promptText}>{prompt}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        )}
-
         {/* Listening State */}
         {isListening ? (
           <View style={styles.listeningBar}>
@@ -160,7 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    ...Shadows.green,
+    ...Shadows.purple,
   },
   sendBtnDisabled: {
     backgroundColor: Colors.textMuted,

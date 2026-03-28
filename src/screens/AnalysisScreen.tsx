@@ -27,7 +27,7 @@ export const AnalysisScreen = () => {
 
       <View style={styles.header}>
         <View style={styles.headerTitleRow}>
-          <Ionicons name="stats-chart" size={28} color={Colors.primary} style={{ marginRight: 8 }} />
+          <Ionicons name="pulse" size={28} color={Colors.primary} style={{ marginRight: 8 }} />
           <Text style={styles.headerTitle}>Your Patterns</Text>
         </View>
         <Text style={styles.headerSub}>Based on your reflections</Text>
@@ -42,7 +42,7 @@ export const AnalysisScreen = () => {
           <View style={styles.chartHeader}>
             <Text style={styles.chartTitle}>Weekly Mood</Text>
             <View style={styles.legendRow}>
-              <View style={[styles.legendDot, { backgroundColor: Colors.primary }]} />
+              <View style={[styles.legendDot, { backgroundColor: Colors.softBlue }]} />
               <Text style={styles.legendLabel}>Active</Text>
             </View>
           </View>
@@ -68,9 +68,9 @@ export const AnalysisScreen = () => {
                         {
                           height: `${item.value * 100}%`,
                           backgroundColor: item.active
-                            ? Colors.primary
-                            : Colors.primaryLight,
-                          borderColor: item.active ? Colors.primaryDark : '#C2E8DC',
+                            ? Colors.softBlue // Palette Blue
+                            : Colors.softPink, // Palette Pink
+                          borderColor: item.active ? '#94A3B8' : '#FBCFE8',
                         },
                       ]}
                     />
@@ -85,52 +85,51 @@ export const AnalysisScreen = () => {
         </View>
 
         {/* Weekly Summary */}
-        <View style={styles.summaryCard}>
-          <Text style={styles.summaryTitle}>This Week</Text>
+        <View style={[styles.summaryCard, { backgroundColor: Colors.softPink }]}>
+          <Text style={[styles.summaryTitle, { color: Colors.primary, opacity: 0.8 }]}>This Week</Text>
           <View style={styles.summaryRow}>
             <View style={styles.summaryItem}>
-              <Text style={styles.summaryValue}>5</Text>
-              <Text style={styles.summaryLabel}>Check-ins</Text>
+              <Text style={[styles.summaryValue, { color: Colors.primary }]}>5</Text>
+              <Text style={[styles.summaryLabel, { color: Colors.primary }]}>Check-ins</Text>
             </View>
-            <View style={styles.summaryDivider} />
+            <View style={[styles.summaryDivider, { backgroundColor: Colors.primary, opacity: 0.2 }]} />
             <View style={styles.summaryItem}>
-              <Text style={styles.summaryValue}>82%</Text>
-              <Text style={styles.summaryLabel}>Mood score</Text>
+              <Text style={[styles.summaryValue, { color: Colors.primary }]}>82%</Text>
+              <Text style={[styles.summaryLabel, { color: Colors.primary }]}>Mood score</Text>
             </View>
-            <View style={styles.summaryDivider} />
+            <View style={[styles.summaryDivider, { backgroundColor: Colors.primary, opacity: 0.2 }]} />
             <View style={styles.summaryItem}>
-              <Text style={styles.summaryValue}>3</Text>
-              <Text style={styles.summaryLabel}>Reflections</Text>
+              <Text style={[styles.summaryValue, { color: Colors.primary }]}>3</Text>
+              <Text style={[styles.summaryLabel, { color: Colors.primary }]}>Reflections</Text>
             </View>
           </View>
         </View>
 
         {/* Insight Section */}
         <View style={styles.sectionHeader}>
-          <Ionicons name="sparkles-outline" size={24} color={Colors.accent} style={{ marginRight: 8 }} />
           <Text style={styles.sectionLabel}>Key Insights</Text>
         </View>
 
         <InsightCard
-          iconName="moon-outline"
-          iconColor={Colors.accent}
-          text="You feel more anxious in evenings"
-          subtext="Consider a short breathing exercise before 8 PM."
-          variant="warning"
-        />
-        <InsightCard
-          iconName="flash-outline"
-          iconColor={Colors.warning}
-          text="You avoid tasks when stressed"
-          subtext="Breaking tasks into small steps may help."
+          iconName="time-outline"
+          iconColor={Colors.primary}
+          text="Evening Reflection Pattern"
+          subtext="Reflecting before 9 PM helps your sleep score."
           variant="default"
         />
         <InsightCard
-          iconName="leaf-outline"
+          iconName="trending-up-outline"
           iconColor={Colors.primary}
-          text="Reflections improve your mood by 24%"
-          subtext="Keep up the great habit!"
+          text="Upward Weekly Trend"
+          subtext="Your mood has improved by 15% this week."
           variant="success"
+        />
+        <InsightCard
+          iconName="heart-outline"
+          iconColor={Colors.primary}
+          text="Strong Connection Scores"
+          subtext="Social interaction is lifting your general mood."
+          variant="default"
         />
       </ScrollView>
     </View>
@@ -214,13 +213,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 2,
   },
-  dayLabelActive: { color: Colors.primary, fontWeight: '700' },
+  dayLabelActive: { color: Colors.softBlue, fontWeight: '700' },
 
   summaryCard: {
     backgroundColor: Colors.primary,
     borderRadius: Radius.lg,
     padding: Spacing.lg,
-    ...Shadows.green,
+    ...Shadows.sm,
     marginBottom: Spacing.lg,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',

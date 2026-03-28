@@ -12,10 +12,10 @@ import { InputBar } from '../components/InputBar';
 import { useApp, Message } from '../context/AppContext';
 
 const AI_RESPONSES = [
-  { text: "Did you avoid something important today?", options: ['Yes', 'No'] },
-  { text: "What do you think triggered that feeling?", options: ['Work stress', 'People', 'Unsure'], prompts: ['What pattern do you see?'] },
-  { text: "That makes sense. Would you say things are getting better or staying the same?", options: ['Better', 'Same', 'Worse'] },
-  { text: "I hear you. You're doing well by reflecting on this. What's one small thing that could help today?", prompts: ['What should I do next?', 'How do I cope?'] },
+  { text: "Did you avoid something important today?" },
+  { text: "What do you think triggered that feeling?" },
+  { text: "That makes sense. Would you say things are getting better or staying the same?" },
+  { text: "I hear you. You're doing well by reflecting on this. What's one small thing that could help today?" },
 ];
 
 export const ChatScreen = ({ route, navigation }: any) => {
@@ -69,8 +69,6 @@ export const ChatScreen = ({ route, navigation }: any) => {
         text: response.text,
         sender: 'ai',
         timestamp: new Date(),
-        options: response.options,
-        prompts: response.prompts,
       };
       addMessage(aiMsg);
       setResponseIndex((prev) => prev + 1);
@@ -84,11 +82,6 @@ export const ChatScreen = ({ route, navigation }: any) => {
       setTimeout(() => handleSend("I've been feeling a bit overwhelmed lately."), 500);
     }
   };
-
-  // Get smart prompts from last AI message
-  const lastAIMsg = [...messages].reverse().find((m) => m.sender === 'ai');
-  const activePrompts = lastAIMsg?.prompts ?? [];
-  const activeOptions = lastAIMsg?.options;
 
   const insets = useSafeAreaInsets();
 
@@ -106,7 +99,7 @@ export const ChatScreen = ({ route, navigation }: any) => {
         </TouchableOpacity>
         <View style={styles.headerCenter}>
           <View style={styles.headerAvatar}>
-             <Ionicons name="sparkles-outline" size={20} color={Colors.primary} />
+             <Ionicons name="chatbubble-ellipses-outline" size={20} color={Colors.primary} />
           </View>
           <View>
             <Text style={styles.headerTitle}>Mindy</Text>
@@ -127,29 +120,16 @@ export const ChatScreen = ({ route, navigation }: any) => {
             <Text style={styles.datePillText}>Today</Text>
           </View>
         }
-        renderItem={({ item, index }) => {
-          const isLastAI = item.sender === 'ai' && index === messages.length - 1;
-          return (
-            <View>
-              <ChatBubble text={item.text} sender={item.sender} />
-              {/* Quick reply options under last AI message */}
-              {isLastAI && item.options && (
-                <View style={styles.optionsRow}>
-                  {item.options.map((opt: string) => (
-                    <TouchableOpacity
-                      key={opt}
-                      style={styles.optionChip}
-                      onPress={() => handleSend(opt)}
-                      activeOpacity={0.7}
-                    >
-                      <Text style={styles.optionText}>{opt}</Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              )}
-            </View>
-          );
-        }}
+        renderItem={({ item }) => (
+          <View style={item.sender === 'user' ? styles.userRow : styles.aiRow}>
+            <ChatBubble text={item.text} sender={item.sender} />
+            {item.sender === 'user' && (
+              <TouchableOpacity style={styles.editIconBtn}>
+                <Ionicons name="pencil" size={14} color={Colors.textMuted} />
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
         ListFooterComponent={
           isTyping ? (
             <View style={styles.typingRow}>
@@ -169,7 +149,6 @@ export const ChatScreen = ({ route, navigation }: any) => {
         onSend={handleSend}
         onMicPress={handleMicPress}
         isListening={isListening}
-        smartPrompts={activePrompts}
       />
     </View>
   );
@@ -269,4 +248,17 @@ const styles = StyleSheet.create({
     ...Shadows.sm,
   },
   typingDots: { color: Colors.textMuted, fontSize: 12, letterSpacing: 2 },
+  userRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  aiRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editIconBtn: {
+    padding: 8,
+    marginRight: 8,
+  },
 });

@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppProvider, useApp } from './src/context/AppContext';
 import { SplashScreen } from './src/screens/SplashScreen';
 import { TabNavigator } from './src/navigation/TabNavigator';
+import { SettingsScreen } from './src/screens/SettingsScreen';
 import { OnboardingModal } from './src/components/OnboardingModal';
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,7 @@ const AppContent = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Main" component={TabNavigator} />
+          <Stack.Screen name="Settings" component={SettingsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
 

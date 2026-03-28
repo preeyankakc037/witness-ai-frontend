@@ -7,8 +7,6 @@ export type Message = {
   text: string;
   sender: 'user' | 'ai';
   timestamp: Date;
-  options?: string[];
-  prompts?: string[];
 };
 
 export type User = {
@@ -57,8 +55,6 @@ const initialMessages: Message[] = [
     text: 'How are you feeling today?',
     sender: 'ai',
     timestamp: new Date(),
-    options: ['Happy', 'Anxious', 'Sad', 'Calm'],
-    prompts: ['Why do I feel this way?', 'What should I do next?'],
   },
 ];
 
