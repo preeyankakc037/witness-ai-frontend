@@ -91,22 +91,22 @@ export const AnalysisScreen = () => {
         </View>
 
         {/* Weekly Summary */}
-        <View style={[styles.summaryCard, { backgroundColor: themeBg }]}>
-          <Text style={[styles.summaryTitle, { color: '#000000', opacity: 0.6 }]}>This Week</Text>
+        <View style={[styles.summaryCard, { backgroundColor: Colors.silver }]}>
+          <Text style={[styles.summaryTitle, { color: Colors.textPrimary, opacity: 0.6 }]}>This Week</Text>
           <View style={styles.summaryRow}>
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: '#000000' }]}>5</Text>
-              <Text style={[styles.summaryLabel, { color: '#000000' }]}>Check-ins</Text>
+              <Text style={[styles.summaryValue, { color: Colors.primary }]}>5</Text>
+              <Text style={[styles.summaryLabel, { color: Colors.textSecondary }]}>Check-ins</Text>
             </View>
-            <View style={[styles.summaryDivider, { backgroundColor: '#000000', opacity: 0.1 }]} />
+            <View style={[styles.summaryDivider, { backgroundColor: Colors.border, opacity: 0.5 }]} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: '#000000' }]}>82%</Text>
-              <Text style={[styles.summaryLabel, { color: '#000000' }]}>Mood score</Text>
+              <Text style={[styles.summaryValue, { color: Colors.primary }]}>82%</Text>
+              <Text style={[styles.summaryLabel, { color: Colors.textSecondary }]}>Mood score</Text>
             </View>
-            <View style={[styles.summaryDivider, { backgroundColor: '#000000', opacity: 0.1 }]} />
+            <View style={[styles.summaryDivider, { backgroundColor: Colors.border, opacity: 0.5 }]} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: '#000000' }]}>3</Text>
-              <Text style={[styles.summaryLabel, { color: '#000000' }]}>Reflections</Text>
+              <Text style={[styles.summaryValue, { color: Colors.primary }]}>3</Text>
+              <Text style={[styles.summaryLabel, { color: Colors.textSecondary }]}>Reflections</Text>
             </View>
           </View>
         </View>
@@ -118,17 +118,17 @@ export const AnalysisScreen = () => {
 
         <InsightCard
           iconName="time-outline"
-          iconColor={themeText}
+          iconColor={Colors.primary}
           text="Evening Reflection Pattern"
           subtext="Reflecting before 9 PM helps your sleep score."
           variant="default"
         />
         <InsightCard
           iconName="trending-up-outline"
-          iconColor={themeText}
+          iconColor={Colors.primary}
           text="Upward Weekly Trend"
           subtext="Your mood has improved by 15% this week."
-          variant="success"
+          variant="default"
         />
         <InsightCard
           iconName="heart-outline"

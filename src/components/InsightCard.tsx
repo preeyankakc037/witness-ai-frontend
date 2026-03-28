@@ -25,7 +25,7 @@ export const InsightCard: React.FC<InsightCardProps> = ({
       ? Colors.primaryLight
       : variant === 'warning'
       ? '#FFF8E6'
-      : Colors.card;
+      : Colors.silver;
 
   const borderColor =
     variant === 'success'

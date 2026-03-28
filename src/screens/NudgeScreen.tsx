@@ -48,10 +48,10 @@ export const NudgeScreen = () => {
         <Text style={styles.nudgeDuration}>{item.duration}</Text>
       </View>
       <TouchableOpacity
-        style={[styles.startBtn, { backgroundColor: themeBg, borderColor: themeAccent }]}
+        style={[styles.startBtn, { backgroundColor: Colors.silver, borderColor: Colors.border }]}
         activeOpacity={0.7}
       >
-        <Text style={[styles.startBtnText, { color: themeText }]}>Start</Text>
+        <Text style={[styles.startBtnText, { color: Colors.primary }]}>Start</Text>
       </TouchableOpacity>
     </View>
   );
@@ -131,15 +131,16 @@ const styles = StyleSheet.create({
     borderRadius: Radius.full,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#F3F4F6',
+    borderColor: Colors.border,
   },
   catBtnActive: {
-    backgroundColor: Colors.beige,
-    borderColor: '#E5E7EB',
+    backgroundColor: Colors.silver,
+    borderColor: Colors.primary,
   },
   catEmoji: {
     fontSize: 16,
     marginRight: 6,
+    color: Colors.primary,
   },
   catLabel: {
     ...Typography.captionMedium,
@@ -193,12 +194,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   startBtn: {
-    backgroundColor: '#F3F2FF', // Light Purple / Lavender
+    backgroundColor: Colors.silver,
     paddingHorizontal: 20,
     paddingVertical: 8,
     borderRadius: Radius.full,
     borderWidth: 1,
-    borderColor: Colors.primary,
+    borderColor: Colors.border,
+    ...Shadows.sm,
   },
   startBtnText: {
     ...Typography.captionMedium,

@@ -13,9 +13,9 @@ export const SettingsScreen = () => {
   const { user, setUser } = useApp();
   const insets = useSafeAreaInsets();
 
-  const themeBg = user.gender === 'female' ? Colors.softPink : user.gender === 'male' ? Colors.softBlue : Colors.softGreen;
-  const themeBorder = user.gender === 'female' ? '#F9A8D4' : user.gender === 'male' ? '#A5B4FC' : '#A7F3D0';
-  const themeText = user.gender === 'female' ? '#9D174D' : user.gender === 'male' ? '#4338CA' : '#065F46';
+  const themeBg = Colors.silver;
+  const themeBorder = Colors.border;
+  const themeText = Colors.primary;
 
   const toggleReminders = () => {
     setUser({ ...user, remindersEnabled: !user.remindersEnabled });
@@ -59,13 +59,13 @@ export const SettingsScreen = () => {
         <View style={styles.card}>
           <View style={[styles.row, styles.rowBorder]}>
             <View style={styles.rowLabelGroup}>
-              <Ionicons name="notifications-outline" size={22} color={themeText} style={{ marginRight: 12 }} />
+              <Ionicons name="notifications-outline" size={22} color={Colors.primary} style={{ marginRight: 12 }} />
               <Text style={styles.rowLabel}>Daily Reminders</Text>
             </View>
             <Switch
               value={user.remindersEnabled}
               onValueChange={toggleReminders}
-              trackColor={{ false: Colors.border, true: themeText }}
+              trackColor={{ false: Colors.border, true: Colors.primary }}
               thumbColor="#FFFFFF"
             />
           </View>
@@ -187,14 +187,16 @@ const styles = StyleSheet.create({
   profileEmail: { ...Typography.caption, color: Colors.textSecondary },
   actionBtn: {
     flexDirection: 'row',
-    backgroundColor: Colors.primaryLight,
+    backgroundColor: Colors.silver,
     paddingVertical: 12,
     borderRadius: Radius.md,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: Spacing.md,
+    borderWidth: 1,
+    borderColor: Colors.border,
   },
-  actionBtnText: { ...Typography.captionMedium, color: Colors.primaryDark },
+  actionBtnText: { ...Typography.captionMedium, color: Colors.primary },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

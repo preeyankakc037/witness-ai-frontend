@@ -21,14 +21,14 @@ export const MindyCard: React.FC<MindyCardProps> = ({ onPress }) => {
       activeOpacity={0.9}
     >
       <View style={styles.content}>
-        <View style={[styles.iconWrap, { backgroundColor: themeBg }]}>
-          <Ionicons name="sparkles-outline" size={28} color={themeText} />
+        <View style={[styles.iconWrap, { backgroundColor: Colors.silver, borderColor: Colors.border, borderWidth: 1 }]}>
+          <Ionicons name="sparkles-outline" size={28} color={Colors.primary} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.title}>Talk with Mindy</Text>
           <Text style={styles.subtitle}>Start your conversation, what's on mind.</Text>
         </View>
-        <TouchableOpacity style={[styles.btn, { backgroundColor: themeText }]} onPress={onPress}>
+        <TouchableOpacity style={styles.btn} onPress={onPress} activeOpacity={0.8}>
           <Text style={styles.btnText}>Start Conversation</Text>
         </TouchableOpacity>
       </View>
@@ -74,14 +74,17 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.silver,
     paddingVertical: 14,
     borderRadius: Radius.full,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: Colors.border,
     ...Shadows.sm,
   },
   btnText: {
     ...Typography.subheading,
-    color: '#FFFFFF',
+    color: Colors.primary,
+    fontWeight: '700',
   },
 });

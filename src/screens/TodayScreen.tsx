@@ -1,5 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Platform, Modal } from 'react-native';
+import { 
+  View, Text, StyleSheet, ScrollView, TouchableOpacity, 
+  Dimensions, Platform, Modal, LayoutAnimation, UIManager 
+} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,10 +17,16 @@ import { GenderSticker } from '../components/GenderSticker';
 
 const { width } = Dimensions.get('window');
 
+// Enable LayoutAnimation for Android
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 export const TodayScreen = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const { user } = useApp();
   const [showNotifs, setShowNotifs] = useState(false);
+  const [isNudgeExpanded, setIsNudgeExpanded] = useState(false);
 
   // State for vertical levels: 1 to 5
   const [energy, setEnergy] = useState(3);
@@ -63,6 +72,11 @@ export const TodayScreen = ({ navigation }: any) => {
     }
     return "Your levels are balanced. Let's keep this momentum going.";
   }, [energy, pressure, connection]);
+
+  const toggleNudge = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setIsNudgeExpanded(!isNudgeExpanded);
+  };
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -128,41 +142,45 @@ export const TodayScreen = ({ navigation }: any) => {
         {/* ── Today's Nudge ── */}
         <View style={styles.nudgeSection}>
           <Text style={styles.sectionLabel}>TODAY'S NUDGE</Text>
-          <View style={styles.nudgePromoCard}>
+          <TouchableOpacity
+            style={styles.nudgePromoCard}
+            onPress={toggleNudge}
+            activeOpacity={0.9}
+          >
             <View style={styles.nudgeRow}>
               <Text style={styles.nudgeIcon}>{todaysNudge.icon}</Text>
               <View style={styles.nudgeInfo}>
                 <Text style={styles.nudgeTitle}>{todaysNudge.title}</Text>
                 <Text style={styles.nudgeSubtitle}>{todaysNudge.duration}</Text>
               </View>
+              <Ionicons
+                name={isNudgeExpanded ? "chevron-up" : "chevron-down"}
+                size={20}
+                color={Colors.textSecondary}
+              />
             </View>
-            <View style={styles.nudgeActions}>
-              <TouchableOpacity
-                style={[
-                  styles.nudgeStartBtn,
-                  {
-                    backgroundColor: Colors.beige,
-                    borderColor: Colors.border
-                  }
-                ]}
-              >
-                <Text style={[
-                  styles.nudgeStartText,
-                  { color: Colors.primary }
-                ]}>Start</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.nudgeEditBtn}
-                onPress={() => navigation.navigate('Nudge')}
-              >
-                <Text style={styles.nudgeEditText}>Edit</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+
+            {isNudgeExpanded && (
+              <View style={styles.nudgeActions}>
+                <TouchableOpacity
+                  style={styles.nudgeActionButton}
+                  onPress={() => navigation.navigate('Nudge')}
+                >
+                  <Text style={styles.nudgeActionText}>Edit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.nudgeActionButton}
+                  onPress={toggleNudge}
+                >
+                  <Text style={styles.nudgeActionText}>Done</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </TouchableOpacity>
         </View>
 
         {/* ── Instant Insight ── */}
-        <View style={[styles.insightCard, { borderLeftColor: Colors.primary }]}>
+        <View style={[styles.insightCard, { backgroundColor: Colors.silver, borderLeftColor: Colors.primary }]}>
           <Text style={[styles.insightTitle, { color: Colors.primary }]}>Instant Insight</Text>
           <Text style={styles.insightText}>{insight}</Text>
         </View>
@@ -346,7 +364,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   nudgePromoCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.silver,
     borderRadius: 24,
     padding: 20,
     ...Shadows.md,
@@ -375,30 +393,23 @@ const styles = StyleSheet.create({
   nudgeActions: {
     flexDirection: 'row',
     gap: 12,
+    marginTop: 4,
   },
-  nudgeStartBtn: {
+  nudgeActionButton: {
     flex: 1,
-    backgroundColor: Colors.softGreen,
+    backgroundColor: Colors.silver,
     paddingVertical: 12,
     borderRadius: 16,
     alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#A7F3D0',
+    borderColor: Colors.border,
+    ...Shadows.sm,
   },
-  nudgeStartText: {
-    color: '#065F46', // Dark Green
+  nudgeActionText: {
+    color: Colors.primary,
     fontWeight: '700',
-  },
-  nudgeEditBtn: {
-    flex: 1,
-    backgroundColor: Colors.beige,
-    paddingVertical: 12,
-    borderRadius: 16,
-    alignItems: 'center',
-  },
-  nudgeEditText: {
-    color: Colors.textPrimary,
-    fontWeight: '700',
+    fontSize: 15,
   },
   insightCard: {
     backgroundColor: Colors.beige, // Refined to Beige

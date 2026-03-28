@@ -3,7 +3,8 @@
 import { Platform } from 'react-native';
 
 export const Palette = {
-  beige: '#F7F5EE',
+  beige: '#F3F4F6', // Very Light Silver
+  silver: '#F3F4F6',
   green: '#ECFBF1',
   blue: '#EFF1FB',
   pink: '#FFF5F5',
@@ -17,6 +18,7 @@ export const Colors = {
 
   // Accent Colors from Palette
   beige: Palette.beige,
+  silver: Palette.silver,
   softGreen: Palette.green,
   softBlue: Palette.blue,
   softPink: Palette.pink,
